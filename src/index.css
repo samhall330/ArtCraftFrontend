@@ -11,11 +11,11 @@
 }
 
 /* Navbar */
-/* body {
+body {
   background: linear-gradient(70deg, #e6e6e6, #f7f7f7);
   color: #514B64;
   min-height: 100vh;
-} */
+}
 
 code {
   background: #fff;
@@ -45,3 +45,5 @@ code {
 .input-group {
   padding: 50px;
 }
+
+/* User Profile Details */
