@@ -1,8 +1,10 @@
+import React from "react";
 import {Switch, Route} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import NavBar from "./NavBar";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -10,7 +12,11 @@ function App() {
 
   return (
     <div>
+      <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Switch>
+      <Route exact path="/login">
+        <Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+      </Route>
       <Route exact path="/login">
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       </Route>

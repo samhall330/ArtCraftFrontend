@@ -1,3 +1,4 @@
+/* Login & Signup Forms */
 .login,
 .image {
   min-height: 100vh;
@@ -7,4 +8,23 @@
   background-image: url('https://res.cloudinary.com/mhmd/image/upload/v1555917661/art-colorful-contemporary-2047905_dxtao7.jpg');
   background-size: cover;
   background-position: center center;
+}
+
+/* Navbar */
+body {
+  background: linear-gradient(70deg, #e6e6e6, #f7f7f7);
+  color: #514B64;
+  min-height: 100vh;
+}
+
+code {
+  background: #fff;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  margin: 0 0.3rem;
+}
+
+
+.container, .container-md, .container-sm {
+    max-width: 2000px;
 }
