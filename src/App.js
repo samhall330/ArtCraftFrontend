@@ -5,6 +5,8 @@ import {useHistory} from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import NavBar from "./NavBar";
+import Search from "./Search";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -14,8 +16,8 @@ function App() {
     <div>
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Switch>
-      <Route exact path="/login">
-        <Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+      <Route exact path="/search">
+        <Search />
       </Route>
       <Route exact path="/login">
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>
