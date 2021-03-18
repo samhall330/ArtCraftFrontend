@@ -1,22 +1,27 @@
 import React from "react";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-function NavBar(){
+function NavBar({currentUser, handleLogOut}){
+
     return(
-        <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <a href="#" class="navbar-brand">
-            <img src="AC Logo.png" width="150px" height="auto" alt="Art Craft Logo" class="d-inline-block align-middle mr-2"/>
-            <span class="text-uppercase font-weight-bold"></span>
+        <nav className="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
+        <div className="container">
+            <a href="/search" className="navbar-brand">
+            <img src="AC Logo.png" width="150px" height="auto" alt="Art Craft Logo" className="d-inline-block align-middle mr-2"/>
+            <span className="text-uppercase font-weight-bold"></span>
             </a>
-            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-        <div id="navbarSupportedContent" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><Link class="nav-link" to="/search">Search Collaborators<span class="sr-only">(current)</span></Link></li>
-                <li class="nav-item"><Link class="nav-link" to="/signup">Sign Up</Link></li>
-                <li class="nav-item"><Link class="nav-link" to="/login">Login</Link></li>
-                <li class="nav-item"><Link class="nav-link" to="">Projects</Link></li>
-            </ul>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" className="navbar-toggler"><span className="navbar-toggler-icon"></span></button>
+        <div id="navbarSupportedContent" className="collapse navbar-collapse">
+                {!currentUser ?
+                <ul className="navbar-nav ml-auto">
+                <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/signup">Sign Up</Link></li>
+                </ul> :
+                <ul className="navbar-nav ml-auto">
+                <li className="nav-item"><Link className="nav-link" to="/search">Search Collaborators</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/profile">Profile</Link></li>
+                <li className="nav-item"><Link onClick={handleLogOut} className="nav-link" to="/login">Log Out</Link></li>
+                </ul>}
         </div>
         </div>
         </nav>
