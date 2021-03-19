@@ -18,7 +18,7 @@ function NavBar({currentUser, handleLogOut}){
                 <li className="nav-item"><Link className="nav-link" to="/signup">Sign Up</Link></li>
                 </ul> :
                 <ul className="navbar-nav ml-auto">
-                <li className="nav-item"><Link className="nav-link" to="/search">Search Collaborators</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/projects">Projects</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/profile">Profile</Link></li>
                 <li className="nav-item"><Link onClick={handleLogOut} className="nav-link" to="/login">Log Out</Link></li>
                 </ul>}
