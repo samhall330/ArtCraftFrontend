@@ -76,7 +76,10 @@ function App() {
 
   return (
     <div>
+      <div class="container py-5">
       <NavBar currentUser={currentUser} handleLogOut={handleLogOut}/>
+      <div class="row">
+      <div class="col-lg-11 mx-auto">
       <Switch>
       <Route exact path="/search">
         <Search />
@@ -91,9 +94,15 @@ function App() {
         {currentUser && <Profile currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
       </Route>
       <Route exact path="/projects">
+        {/* <h5 className="display-4">{currentUser.name}'s Projects</h5>  */}
+        <div className="row py-5">
         <Projects currentUser={currentUser} API={API} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
+        </div>
       </Route>
       </Switch>
+      </div>
+      </div>
+      </div>
     </div>
   );
 }

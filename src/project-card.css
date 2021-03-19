@@ -2,7 +2,19 @@ body {
     min-height: 100vh;
     background: #eeeeee;
   }
-  
+
+  /* .row {
+    display: grid;
+    /* max-width: 700px; */
+    /* flex-wrap: wrap; */
+
+  /* } */
+/* 
+  .project-card-grid {
+    display: grid;
+    grid: 300px/ 300px 300px 300px;
+  }
+   */
   .border-md {
     border-width: 2px !important;
   }
@@ -35,3 +47,4 @@ body {
     right: 0;
     transform: translateY(-50%);
   }
+  
