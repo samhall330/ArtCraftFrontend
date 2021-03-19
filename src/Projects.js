@@ -1,18 +1,20 @@
 import React from "react";
 import ProjectCard from "./ProjectCard"
 
-function Projects ({currentUser, API, projectsArray, setProjectArray}){
+function Projects({currentUser, API, projectsArray, setProjectArray}){
 
     const userProjects = projectsArray.map((project) => {
-        if (project.user_id === currentUser.id){
+        if(project.user_id === currentUser.id){
             return (
-                <ProjectCard key={project.id}/>
+                <ProjectCard />
             )
+            console.log({userProjects})
         }
     })
 
     return(
-        {userProjects}
+        <div></div>
+       
     )
 }
 

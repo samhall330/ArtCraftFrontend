@@ -59,7 +59,7 @@ function App() {
     fetch(`${API}/projects`)
     .then(r => r.json())
     .then(data => {
-      console.log(data)
+      setProjectsArray(data)
     })
   }, [])
 
