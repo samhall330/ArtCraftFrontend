@@ -12,12 +12,13 @@ import Profile from "./Profile";
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [users, setUsers] = ([])
+  const [specialtyArray, setSpecialtyArray] = ([])
   const history = useHistory()
   const API = "http://localhost:3000"
 
   useEffect(() => {
   const token = localStorage.getItem("token")
-    fetch(`${API}/users/verify`, {
+    fetch(`${API}/verify`, {
       headers: {
         Authorization: `Bearer ${token}`
     }})
@@ -26,6 +27,10 @@ function App() {
         if (userData.id === true)
         setCurrentUser(userData)})
   }, [])
+
+  useEffect(() => {
+    fetch(`${API}/specialties`)
+  })
 
   function handleLogOut(){
     localStorage.removeItem("token")

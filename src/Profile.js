@@ -1,58 +1,71 @@
-import userEvent from "@testing-library/user-event";
-import React from "react";
+// import userEvent from "@testing-library/user-event";
+import React, {useState} from "react";
 
 function Profile({currentUser}){
+    const [bioBtnClick, setBioBtnClick] = useState(false)
+    const [bioUpdateForm, setBioUpdateForm] = useState({bio: null})
+    console.log(currentUser)
+
+    function handleEditBio(e){
+        setBioBtnClick(!bioBtnClick)
+    }
+
+    function bioFormSubmit(e){
+        e.preventDefault()
+        fetch(`http://localhost:3000/users/${currentUser.id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // body: JSON.stringify(bio)
+        })  
+    }
+
     return(
-      <>  
-      <div sclas="row py-5 px-4">
-    <div class="col-md-5 mx-auto">
-        <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 cover">
-                <div class="media align-items-end profile-head">
-                    <div class="profile mr-3"><img src={currentUser.profile_pic} alt="..." width="130" class="rounded mb-2 img-thumbnail"/><a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
-                    <div class="media-body mb-5 text-white"></div>
-                        <h4 class="mt-0 mb-0">{currentUser.name}</h4>
+    <>  
+    <div sclas="row py-5 px-4">
+    <div className="col-md-5 mx-auto">
+        <br></br>
+        <div className="bg-white shadow rounded overflow-hidden">
+            <div className="px-4 pt-0 pb-4 cover">
+                <div className="media align-items-end profile-head">
+                    <div className="profile mr-3"><br></br><img src={currentUser.profile_pic} alt={currentUser.name} width="130" className="rounded mb-2 img-thumbnail"/></div>
+                    <div className="media-body mb-5 text-white"></div>
+                        <h4 className="mt-0 mb-0">{currentUser.name}</h4>
                     </div>
                 </div>
             </div>
-            <div class="px-4 py-3">
-                <h5 class="mb-0">Bio</h5>
-                <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">{currentUser.bio}</p>
+            <div className="px-4 py-3">
+                <h5 className="mb-0">Bio</h5>
+                <div className="p-4 rounded shadow-sm bg-light">
+                    <p className="font-italic mb-0">{currentUser.bio}</p>
+                    <br></br>
+                    <button onClick={handleEditBio} class="btn btn-outline-dark btn-sm btn-block">Edit Bio</button>
+                    <br></br>
+                    {bioBtnClick? <form onSubmit={bioFormSubmit}><input id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/></form> : null}
                 </div>
             </div>
-            <div class="px-4 py-3">
-                <h5 class="mb-0">Specialties</h5>
-                <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">video editing, stand up comedy</p>
+            <div className="px-4 py-3">
+                <h5 className="mb-0">Specialties</h5>
+                <div className="p-4 rounded shadow-sm bg-light">
+                    <p className="font-italic mb-0">video editing, stand up comedy</p>
                 </div>
             </div>
-            <div class="px-4 py-3">
-                <h5 class="mb-0">Equipment</h5>
-                <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">camera tripod, iPhoneX, microphone</p>
+            <div className="px-4 py-3">
+                <h5 className="mb-0">Equipment</h5>
+                <div className="p-4 rounded shadow-sm bg-light">
+                    <p className="font-italic mb-0">camera tripod, iPhoneX, microphone</p>
                 </div>
             </div>
-            <div class="px-4 py-3">
-                <h5 class="mb-0">Software</h5>
-                <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">adobe premiere</p>
-                </div>
-            </div>
-            <div class="py-4 px-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="img-fluid rounded shadow-sm"/></div>
-                    <div class="col-lg-6 mb-2 pl-lg-1"><img src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="img-fluid rounded shadow-sm"/></div>
-                    <div class="col-lg-6 pr-lg-1 mb-2"><img src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" class="img-fluid rounded shadow-sm"/></div>
-                    <div class="col-lg-6 pl-lg-1"><img src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" class="img-fluid rounded shadow-sm"/></div>
+            <div className="px-4 py-3">
+                <h5 className="mb-0">Software</h5>
+                <div className="p-4 rounded shadow-sm bg-light">
+                    <p className="font-italic mb-0">adobe premiere</p>
                 </div>
             </div>
         </div>
-    </div>
-</>
+        </div>
+        </>
     )
 }
 
