@@ -10,7 +10,7 @@ function ProjectCard({currentUser, project}){
     if (project_type === "comedy show"){
         image = "https://howtowritefunny.com/wp-content/uploads/2019/02/Crash-Course-in-StandupSMALL.jpg"
     } else if (project_type === "short film"){
-        image = "https://aatfweb.files.wordpress.com/2017/06/film.jpg"
+        image = "https://c4.wallpaperflare.com/wallpaper/779/691/639/movies-film-reel-technology-projector-8mm-wallpaper-preview.jpg"
     } else {
         image = "https://www.artnews.com/wp-content/uploads/2020/05/shutterstock_1137734102.jpg"
     }

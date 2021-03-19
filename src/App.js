@@ -7,7 +7,7 @@ import SignUp from "./SignUp";
 import NavBar from "./NavBar";
 import Search from "./Search";
 import Profile from "./Profile";
-import Projects from "./Projects";
+import ProjectList from "./ProjectList";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -94,9 +94,9 @@ function App() {
         {currentUser && <Profile currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
       </Route>
       <Route exact path="/projects">
-        {/* <h5 className="display-4">{currentUser.name}'s Projects</h5>  */}
+        <h5 className="display-4">{currentUser.name}'s Projects</h5> 
         <div className="row py-5">
-        <Projects currentUser={currentUser} API={API} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
+        <ProjectList currentUser={currentUser} API={API} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
         </div>
       </Route>
       </Switch>
