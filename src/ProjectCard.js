@@ -30,7 +30,6 @@ function ProjectCard({currentUser, project}){
                 <figcaption className="p-4 bg-white">
                     <h2 className="h5 font-weight-bold mb-2 font-italic">{title}</h2>
                     <p className="mb-0 text-small font-italic text-muted">{project_type.toUpperCase()} | {location}</p>
-                    <noscript>{id}</noscript>
                 </figcaption>
             </figure>
         </div>
