@@ -1,27 +1,39 @@
 import React from "react";
+import {useState} from "react";
+import UserCard from "./UserCard";
 
-function Search({specialtyArray, searchQuery, setSearchQuery, currentUser, users}){
+function Search({searchQuery, setSearchQuery, currentUser, users}){
 
-  
+  const [collabCardArray, setCollabCardArray] = useState([])
 
   function checkArray(array){
-    let userSpec = false
+    let userAttribute = false
     array.map((spec) => {
-      if (spec.spec_name.includes(searchQuery)){
-        userSpec = true
+      if (spec.name.includes(searchQuery)){
+        userAttribute = true
       }
     })
-    return userSpec
+    return userAttribute
   }
 
   function handleSearch(e){
-    // console.log(users[0].specialties[0].spec_name)
-    console.log(searchQuery)
-    
     const collaboratorsArray = users.filter((user) => checkArray(user.specialties))
-  console.log(collaboratorsArray)
-
+    console.log(collaboratorsArray)
+    setCollabCardArray(collaboratorsArray)
   }
+
+  const collaborators = collabCardArray.map((collaborator) => {
+    return (
+      <div className="container py-5">
+      <div className="row">
+      <div className="col-lg-11 mx-auto">
+      <UserCard collaborator={collaborator} key={currentUser.id}/>
+      </div>
+      </div>
+      </div>
+    )
+  })
+
     return(
         <>
         <h5 className="display-4">Find Collaborators</h5>
@@ -31,6 +43,8 @@ function Search({specialtyArray, searchQuery, setSearchQuery, currentUser, users
         </div>
         <input onChange={(e) => setSearchQuery(e.target.value)} type="search" placeholder="Search by expertise, equipment, or software..." aria-describedby="button-addon8" className="form-control"/>
       </div>
+
+      {collaborators}
       </>
     )
 }

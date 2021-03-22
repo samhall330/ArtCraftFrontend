@@ -50,7 +50,7 @@ function Profile({
         if (specialty.user_id === currentUser.id){
             return(
                 <ul>
-                <li><p key={specialty.user_id} className="font-italic mb-0">{specialty.spec_name} | {specialty.pro_level}</p></li>
+                <li><p key={specialty.user_id} className="font-italic mb-0">{specialty.name} | {specialty.pro_level}</p></li>
                 </ul>
             )
         }
@@ -60,7 +60,7 @@ function Profile({
         if (equipment.user_id === currentUser.id){
             return(
                 <ul>  
-                <li><a href={equipment.equip_link} target="_blank" className="font-italic mb-0">{equipment.equip_name}</a></li>
+                <li><a href={equipment.equip_link} target="_blank" className="font-italic mb-0">{equipment.name}</a></li>
                 </ul>
             )
         }
@@ -70,7 +70,7 @@ function Profile({
         if (software.user_id === currentUser.id){
             return(
                 <ul>
-                <li><a href={software.soft_link} target="_blank" className="font-italic mb-0">{software.soft_name}</a></li>
+                <li><a href={software.soft_link} target="_blank" className="font-italic mb-0">{software.name}</a></li>
                 </ul>
             )
         }
@@ -150,7 +150,7 @@ function Profile({
 
     function onAddSoftware(e){
         e.preventDefault()
-        const softwareObj = {user_id: currentUser.id, soft_name: software, soft_link: softwareLink}
+        const softwareObj = {user_id: currentUser.id, name: software, soft_link: softwareLink}
         console.log(softwareObj)
             fetch(`${API}/softwares`, {
                 method: "POST",
