@@ -1,5 +1,6 @@
 // import userEvent from "@testing-library/user-event";
 import React, {useState, useEffect} from "react";
+import {useParams, useHistory} from "react-router-dom";
 // import {Link} from "react-router-dom";
 
 function Profile({
@@ -9,7 +10,8 @@ function Profile({
     equipmentArray, 
     setEquipmentArray,
     softwareArray,
-    setSoftwareArray}) {
+    setSoftwareArray,
+    API}) {
     const [bioBtnClick, setBioBtnClick] = useState(false)
     const [specBtnClick, setSpecBtnClick] = useState(false)
     const [equipBtnClick, setEquipBtnClick] = useState(false)
@@ -22,7 +24,11 @@ function Profile({
     const [software, setSoftware] = useState("")
     const [softwareLink, setSoftwareLink] = useState("")
     const [bioUpdateForm, setBioUpdateForm] = useState({bio: null})
-    // console.log(currentUser)
+    // const history = useHistory()
+
+    // function projectCardClick(e){
+    //     let {projectId} = useParams();
+    // }
 
     function handleEditBio(e){
         setBioBtnClick(!bioBtnClick)
@@ -77,14 +83,14 @@ function Profile({
     function bioFormSubmit(e){
         e.preventDefault()
         const bioObj = {bio: bio}
-        fetch(`http://localhost:3000/users/${currentUser.id}`,{
+        fetch(`${API}/${currentUser.id}`,{
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(bioObj)
         })
         .then(r => r.json())
         .then(data =>{
-            console.log(data)
+            // console.log(data)
         })
     }
 
@@ -99,7 +105,7 @@ function Profile({
     function onAddSpec(e){
         e.preventDefault()
         const specObj = {user_id: currentUser.id, spec_name: specialty, pro_level: proLevel}
-            fetch ("http://localhost:3000/specialties",{
+            fetch (`${API}/specialties`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(specObj)
@@ -122,7 +128,7 @@ function Profile({
     function onAddEquip(e){
         e.preventDefault()
         const equipObj = {user_id: currentUser.id, equip_name: equipment, equip_link: equipmentLink}
-            fetch ("http://localhost:3000/equipment",{
+            fetch (`${API}/equipment`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(equipObj)
@@ -146,7 +152,7 @@ function Profile({
         e.preventDefault()
         const softwareObj = {user_id: currentUser.id, soft_name: software, soft_link: softwareLink}
         console.log(softwareObj)
-            fetch("http://localhost:3000/softwares", {
+            fetch(`${API}/softwares`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(softwareObj)

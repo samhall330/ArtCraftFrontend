@@ -1,13 +1,14 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
 import {useState, useEffect} from "react";
-import {useHistory} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import NavBar from "./NavBar";
 import Search from "./Search";
 import Profile from "./Profile";
 import ProjectList from "./ProjectList";
+import Project from "./Project";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -18,6 +19,7 @@ function App() {
   const [projectsArray, setProjectsArray] = useState([])
   const history = useHistory()
   const API = "http://localhost:3000"
+
 
   useEffect(() => {
   const token = localStorage.getItem("token")
@@ -91,13 +93,16 @@ function App() {
         <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} setUsers={setUsers} API={API}/>
       </Route>
       <Route exact path="/profile">
-        {currentUser && <Profile currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
+        {currentUser && <Profile API={API} currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
       </Route>
       <Route exact path="/projects">
         {currentUser && <h5 className="display-4">{currentUser.name}'s Projects</h5> }
         <div className="row py-5">
         <ProjectList currentUser={currentUser} API={API} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
         </div>
+      </Route>
+      <Route exact path="/projects/:id">
+        <Project API={API}/>
       </Route>
       </Switch>
       </div>

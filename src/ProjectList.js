@@ -1,17 +1,14 @@
 import React from "react";
 import ProjectCard from "./ProjectCard"
 
-function Projects({currentUser, API, projectsArray, setProjectArray}){
+function ProjectList({currentUser, API, projectsArray, setProjectArray, ProjectCardClick}){
 
-    function projectCardClick(e){
-        console.log(e)
-    }
 
     const userProjects = projectsArray.map((project) => {
         if(project.user_id == currentUser.id){
             return (
                 // <div className="row py-5">
-                <ProjectCard projectCardClick={projectCardClick} project={project} key={project.id} currentUser={currentUser}/>
+                <ProjectCard project={project} key={project.id} currentUser={currentUser}/>
                 
             )
         }
@@ -33,4 +30,4 @@ function Projects({currentUser, API, projectsArray, setProjectArray}){
     )
 }
 
-export default Projects;
+export default ProjectList;

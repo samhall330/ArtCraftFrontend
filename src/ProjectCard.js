@@ -1,7 +1,10 @@
 import React, {useState} from "react";
+import {useParams, useHistory} from "react-router-dom";
 import './project-card.css';
 
-function ProjectCard({currentUser, project, projectCardClick}){
+function ProjectCard({currentUser, project}){
+
+    const history = useHistory()
 
     let image = ""
 
@@ -15,11 +18,13 @@ function ProjectCard({currentUser, project, projectCardClick}){
         image = "https://www.artnews.com/wp-content/uploads/2020/05/shutterstock_1137734102.jpg"
     }
 
-    
+    function projCardClick(){
+        history.push(`/projects/${id}`)
+    }    
 
     return(
         <>
-        <div onClick={projectCardClick} className="col-lg-4">
+        <div onClick={projCardClick} className="col-lg-4">
             <figure className="caption-2 mb-0 shadow-sm border border-white border-md">
                 <img src={image} alt="" className="w-100"/>
                 <figcaption className="p-4 bg-white">
