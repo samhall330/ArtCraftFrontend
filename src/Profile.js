@@ -1,5 +1,5 @@
 // import userEvent from "@testing-library/user-event";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 // import {Link} from "react-router-dom";
 
 function Profile({
@@ -9,11 +9,18 @@ function Profile({
     equipmentArray, 
     setEquipmentArray,
     softwareArray,
-    setSoftwareArray}){
+    setSoftwareArray}) {
     const [bioBtnClick, setBioBtnClick] = useState(false)
     const [specBtnClick, setSpecBtnClick] = useState(false)
     const [equipBtnClick, setEquipBtnClick] = useState(false)
     const [softBtnClick, setSoftBtnClick] = useState(false)
+    const [bio, setBio] = useState("")
+    const [specialty, setSpecialty] = useState("")
+    const [proLevel, setProLevel] = useState("")
+    const [equipment, setEquipment] = useState("")
+    const [equipmentLink, setEquipmentLink] = useState("")
+    const [software, setSoftware] = useState("")
+    const [softwareLink, setSoftwareLink] = useState("")
     const [bioUpdateForm, setBioUpdateForm] = useState({bio: null})
     // console.log(currentUser)
 
@@ -33,30 +40,22 @@ function Profile({
         setSoftBtnClick(!softBtnClick)
     }
 
-    function bioFormSubmit(e){
-        e.preventDefault()
-        fetch(`http://localhost:3000/users/${currentUser.id}`,{
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            // body: JSON.stringify(bio)
-        })  
-    }
-
     const userSpecialties = specialtyArray.map((specialty) => {
         if (specialty.user_id === currentUser.id){
             return(
-                <p key={specialty.user_id} className="font-italic mb-0">{specialty.spec_name.toUpperCase()} | {specialty.pro_level}</p>
+                <ul>
+                <li><p key={specialty.user_id} className="font-italic mb-0">{specialty.spec_name} | {specialty.pro_level}</p></li>
+                </ul>
             )
         }
     })
 
     const userEquipment = equipmentArray.map((equipment) => {
         if (equipment.user_id === currentUser.id){
-            // console.log(equipment.equip_name)
             return(
-                <a href={equipment.equip_link} target="_blank" className="font-italic mb-0">{equipment.equip_name}</a>
+                <ul>  
+                <li><a href={equipment.equip_link} target="_blank" className="font-italic mb-0">{equipment.equip_name}</a></li>
+                </ul>
             )
         }
     })
@@ -64,10 +63,100 @@ function Profile({
     const userSoftware = softwareArray.map((software) => {
         if (software.user_id === currentUser.id){
             return(
-                <a href={software.soft_link} target="_blank" className="font-italic mb-0">{software.soft_name}</a>
+                <ul>
+                <li><a href={software.soft_link} target="_blank" className="font-italic mb-0">{software.soft_name}</a></li>
+                </ul>
             )
         }
     })
+
+    function handleBioChange(e){
+        setBio(e.target.value)
+    }
+
+    function bioFormSubmit(e){
+        e.preventDefault()
+        const bioObj = {bio: bio}
+        fetch(`http://localhost:3000/users/${currentUser.id}`,{
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(bioObj)
+        })
+        .then(r => r.json())
+        .then(data =>{
+            console.log(data)
+        })
+    }
+
+    function handleChangeSpec(e){
+        setSpecialty(e.target.value)
+    }
+
+    function handleChangeProLevel(e){
+        setProLevel(e.target.value)
+    }
+
+    function onAddSpec(e){
+        e.preventDefault()
+        const specObj = {user_id: currentUser.id, spec_name: specialty, pro_level: proLevel}
+            fetch ("http://localhost:3000/specialties",{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(specObj)
+            })
+            .then(r => r.json())
+            .then(data => {
+                setSpecialtyArray([...specialtyArray, data])
+                // ***CLEAR INPUT FIELDS***
+            })
+    }
+
+    function handleChangeEquip(e){
+        setEquipment(e.target.value)
+    }
+
+    function handleChangeEquipLink(e){
+        setEquipmentLink(e.target.value)
+    }
+
+    function onAddEquip(e){
+        e.preventDefault()
+        const equipObj = {user_id: currentUser.id, equip_name: equipment, equip_link: equipmentLink}
+            fetch ("http://localhost:3000/equipment",{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(equipObj)
+            })
+            .then(r => r.json())
+            .then(data => {
+                setEquipmentArray([...equipmentArray, data])
+                // ***CLEAR INPUT FIELDS***
+            })
+    }
+
+    function handleChangeSoft(e){
+        setSoftware(e.target.value)
+    }
+    
+    function handleChangeSoftLink(e){
+        setSoftwareLink(e.target.value)
+    }
+
+    function onAddSoftware(e){
+        e.preventDefault()
+        const softwareObj = {user_id: currentUser.id, soft_name: software, soft_link: softwareLink}
+        console.log(softwareObj)
+            fetch("http://localhost:3000/softwares", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(softwareObj)
+            })
+            .then(r => r.json())
+            .then(data => {
+                setSoftwareArray([...softwareArray, data])
+                // ***CLEAR INPUT FIELDS***
+            })
+    }
 
     return(
     <>  
@@ -90,7 +179,7 @@ function Profile({
                     <br></br>
                     <button onClick={handleEditBio} className="btn btn-outline-dark btn-sm btn-block">Edit Bio</button>
                     <br></br>
-                    {bioBtnClick? <form onSubmit={bioFormSubmit}><input id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    {bioBtnClick? <form onSubmit={bioFormSubmit}><input onChange={handleBioChange} id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>
                     <input type="submit" value="Submit"></input>
                     </form> : null}
@@ -103,9 +192,9 @@ function Profile({
                     <br></br>
                     <button onClick={handleSpecClick} className="btn btn-outline-dark btn-sm btn-block">Add Specialty</button>
                     <br></br>
-                    {specBtnClick? <form><input id="inputSpec" name="add_spec" type="add_spec" placeholder="Add Specialty" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    {specBtnClick? <form onSubmit={onAddSpec}><input onChange={handleChangeSpec} id="inputSpec" name="add_spec" type="add_spec" placeholder="Add Specialty" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <label for="pro_level">Professional Level:</label>
-                    <select name="pro_level" id="pro_level">
+                    <select onChange={handleChangeProLevel} name="pro_level" id="pro_level">
                         <option value="Amateur">Amateur</option>
                         <option value="Semi-Pro">Semi-Professional</option>
                         <option value="Professional">Professional</option>
@@ -122,11 +211,11 @@ function Profile({
                     <br></br>
                     <button onClick={handleEquipClick} className="btn btn-outline-dark btn-sm btn-block">Add Equipment</button>
                     <br></br>
-                    {equipBtnClick? <form><input id="inputEquip" name="add_equip" type="add_equip" placeholder="Add Equipment" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    {equipBtnClick? <form onSubmit={onAddEquip}><input onChange={handleChangeEquip} id="inputEquip" name="add_equip" type="add_equip" placeholder="Add Equipment" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>
-                    <input id="inputEquipLink" name="add_equip_link" type="add_equip_link" placeholder="Link to Product Page" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <input onChange={handleChangeEquipLink} id="inputEquipLink" name="add_equip_link" type="add_equip_link" placeholder="Link to Product Page" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>
-                    <input type="submit" value="Submit"></input>
+                    <input type="submit" value="Add"></input>
                     </form> : null}
                 </div>
             </div>
@@ -137,11 +226,11 @@ function Profile({
                     <br></br>
                     <button onClick={handleSoftClick} className="btn btn-outline-dark btn-sm btn-block">Add Software</button>
                     <br></br>
-                    {softBtnClick? <form><input id="inputSoftware" name="add_software" type="add_software" placeholder="Add Software" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    {softBtnClick? <form onSubmit={onAddSoftware}><input onChange={handleChangeSoft} id="inputSoftware" name="add_software" type="add_software" placeholder="Add Software" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>
-                    <input id="inputSoftLink" name="add_soft_link" type="add_soft_link" placeholder="Link to Product Page" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <input onChange={handleChangeSoftLink} id="inputSoftLink" name="add_soft_link" type="add_soft_link" placeholder="Link to Product Page" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>
-                    <input type="submit" value="Submit"></input>
+                    <input type="submit" value="Add"></input>
                     </form> : null}
                 </div>
             </div>
