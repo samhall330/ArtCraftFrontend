@@ -92,7 +92,7 @@ function App() {
       <div class="col-lg-11 mx-auto">
       <Switch>
       <Route exact path="/search">
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users}/>
+        <Search specialtyArray={specialtyArray} searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users}/>
       </Route>
       <Route exact path="/login">
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser} API={API}/>

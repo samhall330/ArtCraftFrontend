@@ -1,12 +1,24 @@
 import React from "react";
 
-function Search({searchQuery, setSearchQuery, currentUser, users}){
+function Search({specialtyArray, searchQuery, setSearchQuery, currentUser, users}){
+
+  
+
+  function checkArray(array){
+    let userSpec = false
+    array.map((spec) => {
+      if (spec.spec_name.includes(searchQuery)){
+        userSpec = true
+      }
+    })
+    return userSpec
+  }
 
   function handleSearch(e){
     // console.log(users[0].specialties[0].spec_name)
     console.log(searchQuery)
     
-  const collaboratorsArray = users.filter((user) => searchQuery.includes(user.specialties.spec_name))
+    const collaboratorsArray = users.filter((user) => checkArray(user.specialties))
   console.log(collaboratorsArray)
 
   }
