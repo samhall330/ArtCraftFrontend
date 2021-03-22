@@ -3,11 +3,15 @@ import ProjectCard from "./ProjectCard"
 
 function Projects({currentUser, API, projectsArray, setProjectArray}){
 
+    function projectCardClick(e){
+        console.log(e)
+    }
+
     const userProjects = projectsArray.map((project) => {
         if(project.user_id == currentUser.id){
             return (
                 // <div className="row py-5">
-                <ProjectCard project ={project} key={project.id} currentUser={currentUser}/>
+                <ProjectCard projectCardClick={projectCardClick} project={project} key={project.id} currentUser={currentUser}/>
                 
             )
         }

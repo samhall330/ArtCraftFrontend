@@ -94,7 +94,7 @@ function App() {
         {currentUser && <Profile currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
       </Route>
       <Route exact path="/projects">
-        <h5 className="display-4">{currentUser.name}'s Projects</h5> 
+        {currentUser && <h5 className="display-4">{currentUser.name}'s Projects</h5> }
         <div className="row py-5">
         <ProjectList currentUser={currentUser} API={API} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
         </div>

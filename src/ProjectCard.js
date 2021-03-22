@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './project-card.css';
 
-function ProjectCard({currentUser, project}){
+function ProjectCard({currentUser, project, projectCardClick}){
 
     let image = ""
 
@@ -15,14 +15,17 @@ function ProjectCard({currentUser, project}){
         image = "https://www.artnews.com/wp-content/uploads/2020/05/shutterstock_1137734102.jpg"
     }
 
+    
+
     return(
         <>
-        <div className="col-lg-4">
+        <div onClick={projectCardClick} className="col-lg-4">
             <figure className="caption-2 mb-0 shadow-sm border border-white border-md">
                 <img src={image} alt="" className="w-100"/>
                 <figcaption className="p-4 bg-white">
-                    <h2 className="h5 font-weight-bold mb-2 font-italic">"{title}"</h2>
+                    <h2 className="h5 font-weight-bold mb-2 font-italic">{title}</h2>
                     <p className="mb-0 text-small font-italic text-muted">{project_type.toUpperCase()} | {location}</p>
+                    <noscript>{id}</noscript>
                 </figcaption>
             </figure>
         </div>

@@ -1,6 +1,6 @@
 // import userEvent from "@testing-library/user-event";
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 
 function Profile({
     currentUser, 
@@ -11,11 +11,26 @@ function Profile({
     softwareArray,
     setSoftwareArray}){
     const [bioBtnClick, setBioBtnClick] = useState(false)
+    const [specBtnClick, setSpecBtnClick] = useState(false)
+    const [equipBtnClick, setEquipBtnClick] = useState(false)
+    const [softBtnClick, setSoftBtnClick] = useState(false)
     const [bioUpdateForm, setBioUpdateForm] = useState({bio: null})
     // console.log(currentUser)
 
     function handleEditBio(e){
         setBioBtnClick(!bioBtnClick)
+    }
+
+    function handleSpecClick(e){
+        setSpecBtnClick(!specBtnClick)
+    }
+
+    function handleEquipClick(e){
+        setEquipBtnClick(!equipBtnClick)
+    }
+    
+    function handleSoftClick(e){
+        setSoftBtnClick(!softBtnClick)
     }
 
     function bioFormSubmit(e){
@@ -32,7 +47,7 @@ function Profile({
     const userSpecialties = specialtyArray.map((specialty) => {
         if (specialty.user_id === currentUser.id){
             return(
-                <p key = {specialty.user_id} className="font-italic mb-0">{specialty.spec_name.toUpperCase()} | {specialty.pro_level}</p>
+                <p key={specialty.user_id} className="font-italic mb-0">{specialty.spec_name.toUpperCase()} | {specialty.pro_level}</p>
             )
         }
     })
@@ -75,7 +90,10 @@ function Profile({
                     <br></br>
                     <button onClick={handleEditBio} className="btn btn-outline-dark btn-sm btn-block">Edit Bio</button>
                     <br></br>
-                    {bioBtnClick? <form onSubmit={bioFormSubmit}><input id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/></form> : null}
+                    {bioBtnClick? <form onSubmit={bioFormSubmit}><input id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <br></br>
+                    <input type="submit" value="Submit"></input>
+                    </form> : null}
                 </div>
             </div>
             <div className="px-4 py-3">
@@ -83,7 +101,18 @@ function Profile({
                 <div className="p-4 rounded shadow-sm bg-light">
                     {userSpecialties}
                     <br></br>
-                    <button className="btn btn-outline-dark btn-sm btn-block">Add Specialty</button>
+                    <button onClick={handleSpecClick} className="btn btn-outline-dark btn-sm btn-block">Add Specialty</button>
+                    <br></br>
+                    {specBtnClick? <form><input id="inputSpec" name="add_spec" type="add_spec" placeholder="Add Specialty" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <label for="pro_level">Professional Level:</label>
+                    <select name="pro_level" id="pro_level">
+                        <option value="Amateur">Amateur</option>
+                        <option value="Semi-Pro">Semi-Professional</option>
+                        <option value="Professional">Professional</option>
+                    </select>
+                    <br></br>
+                    <input type="submit" value="Submit"></input>
+                    </form> : null}
                 </div>
             </div>
             <div className="px-4 py-3">
@@ -91,7 +120,14 @@ function Profile({
                 <div className="p-4 rounded shadow-sm bg-light">
                     {userEquipment}
                     <br></br>
-                    <button className="btn btn-outline-dark btn-sm btn-block">Add Equipment</button>
+                    <button onClick={handleEquipClick} className="btn btn-outline-dark btn-sm btn-block">Add Equipment</button>
+                    <br></br>
+                    {equipBtnClick? <form><input id="inputEquip" name="add_equip" type="add_equip" placeholder="Add Equipment" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <br></br>
+                    <input id="inputEquipLink" name="add_equip_link" type="add_equip_link" placeholder="Link to Product Page" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <br></br>
+                    <input type="submit" value="Submit"></input>
+                    </form> : null}
                 </div>
             </div>
             <div className="px-4 py-3">
@@ -99,7 +135,14 @@ function Profile({
                 <div className="p-4 rounded shadow-sm bg-light">
                     {userSoftware}
                     <br></br>
-                    <button className="btn btn-outline-dark btn-sm btn-block">Add Software</button>
+                    <button onClick={handleSoftClick} className="btn btn-outline-dark btn-sm btn-block">Add Software</button>
+                    <br></br>
+                    {softBtnClick? <form><input id="inputSoftware" name="add_software" type="add_software" placeholder="Add Software" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <br></br>
+                    <input id="inputSoftLink" name="add_soft_link" type="add_soft_link" placeholder="Link to Product Page" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <br></br>
+                    <input type="submit" value="Submit"></input>
+                    </form> : null}
                 </div>
             </div>
         </div>
