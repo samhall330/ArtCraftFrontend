@@ -1,19 +1,23 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 
 function Project({API}){
     
     const [thisProject, setThisProject] = useState("")
     const params = useParams()
+    const history = useHistory()
     const project_id = params.id
-    // const {id, }
 
     useEffect(() => {
         fetch(`${API}/projects/${project_id}`)
         .then(r => r.json())
         .then(data => setThisProject(data))
     }, [])
+
+    function handleSearchClick(){
+        history.push("/search")
+    }
 
     const {id, title, project_type, start_date, duration, location} = thisProject
 
@@ -39,11 +43,13 @@ function Project({API}){
                             <li><p className="mb-0 text-small font-italic text-muted">Location: {location}</p></li>
                             <li><p className="mb-0 text-small font-italic text-muted">Start Date: {start_date}</p></li>
                             <li><p className="mb-0 text-small font-italic text-muted">Duration: {duration}</p></li>
+                            <br></br>
+                            <button onClick={handleSearchClick} className="btn btn-outline-dark btn-sm btn-block">Search Collaborators</button>
                         </ul>
                 </figcaption>
             </figure>
         </div>
-       </>
+        </>
     )
 }
 

@@ -11,15 +11,15 @@ import ProjectList from "./ProjectList";
 import Project from "./Project";
 
 function App() {
+  const API = "http://localhost:3000"
   const [currentUser, setCurrentUser] = useState(null)
   const [users, setUsers] = useState([])
   const [specialtyArray, setSpecialtyArray] = useState([])
   const [equipmentArray, setEquipmentArray] = useState([])
   const [softwareArray, setSoftwareArray] = useState([])
   const [projectsArray, setProjectsArray] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
   const history = useHistory()
-  const API = "http://localhost:3000"
-
 
   useEffect(() => {
   const token = localStorage.getItem("token")
@@ -33,6 +33,14 @@ function App() {
       })}
   , [])
 
+  useEffect(() => {
+    fetch(`${API}/users`)
+    .then(r => r.json())
+    .then(data => {
+      setUsers(data)
+    })
+  }, [])
+  
   useEffect(() => {
     fetch(`${API}/specialties`)
     .then(r => r.json())
@@ -84,7 +92,7 @@ function App() {
       <div class="col-lg-11 mx-auto">
       <Switch>
       <Route exact path="/search">
-        <Search />
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users}/>
       </Route>
       <Route exact path="/login">
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser} API={API}/>
