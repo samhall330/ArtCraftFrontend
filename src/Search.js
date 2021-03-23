@@ -27,7 +27,7 @@ function Search({searchQuery, setSearchQuery, currentUser, users}){
       <div className="container py-5">
       <div className="row">
       <div className="col-lg-11 mx-auto">
-      <UserCard collaborator={collaborator} key={currentUser.id}/>
+      <UserCard collaborator={collaborator} key={currentUser.id} currentUser={currentUser}/>
       </div>
       </div>
       </div>
