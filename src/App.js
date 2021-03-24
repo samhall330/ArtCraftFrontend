@@ -9,6 +9,7 @@ import Search from "./Search";
 import Profile from "./Profile";
 import ProjectList from "./ProjectList";
 import Project from "./Project";
+import NewProject from "./NewProject";
 
 function App() {
   const API = "http://localhost:3000"
@@ -120,6 +121,9 @@ function App() {
       </Route>
       <Route exact path="/projects/:id">
         <Project API={API}/>
+      </Route>
+      <Route exact path="/new_project">
+        <NewProject API={API} currentUser={currentUser} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
       </Route>
       </Switch>
       </div>

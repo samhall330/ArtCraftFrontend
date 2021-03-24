@@ -19,8 +19,10 @@ function NavBar({currentUser, handleLogOut}){
                 </ul> :
                 <ul className="navbar-nav ml-auto">
                 <li className="nav-item"><Link className="nav-link" to="/projects">Projects</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/new_project">New Project</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/profile">Profile</Link></li>
                 <li className="nav-item"><Link onClick={handleLogOut} className="nav-link" to="/login">Log Out</Link></li>
+                
                 </ul>}
         </div>
         </div>
