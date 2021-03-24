@@ -18,6 +18,7 @@ function App() {
   const [equipmentArray, setEquipmentArray] = useState([])
   const [softwareArray, setSoftwareArray] = useState([])
   const [projectsArray, setProjectsArray] = useState([])
+  const [projCollabArray, setProjCollabArray] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const history = useHistory()
 
@@ -33,6 +34,14 @@ function App() {
       })}
   , [])
 
+  useEffect(() => {
+    fetch(`${API}/collaborators`)
+    .then(r => r.json())
+    .then(data => {
+      setProjCollabArray(data)
+    })
+  }, [])
+  
   useEffect(() => {
     fetch(`${API}/users`)
     .then(r => r.json())
@@ -92,7 +101,7 @@ function App() {
       <div class="col-lg-11 mx-auto">
       <Switch>
       <Route exact path="/search">
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users}/>
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray} API={API}/>
       </Route>
       <Route exact path="/login">
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser} API={API}/>

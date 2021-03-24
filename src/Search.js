@@ -2,7 +2,7 @@ import React from "react";
 import {useState} from "react";
 import UserCard from "./UserCard";
 
-function Search({searchQuery, setSearchQuery, currentUser, users}){
+function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArray, setProjCollabArray, API}){
 
   const [collabCardArray, setCollabCardArray] = useState([])
 
@@ -18,7 +18,7 @@ function Search({searchQuery, setSearchQuery, currentUser, users}){
 
   function handleSearch(e){
     const collaboratorsArray = users.filter((user) => checkArray(user.specialties))
-    console.log(collaboratorsArray)
+    // console.log(collaboratorsArray)
     setCollabCardArray(collaboratorsArray)
   }
 
@@ -27,7 +27,7 @@ function Search({searchQuery, setSearchQuery, currentUser, users}){
       <div className="container py-5">
       <div className="row">
       <div className="col-lg-11 mx-auto">
-      <UserCard collaborator={collaborator} key={currentUser.id} currentUser={currentUser}/>
+      <UserCard collaborator={collaborator} key={currentUser.id} currentUser={currentUser} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray}/>
       </div>
       </div>
       </div>

@@ -104,7 +104,7 @@ function Profile({
 
     function onAddSpec(e){
         e.preventDefault()
-        const specObj = {user_id: currentUser.id, spec_name: specialty, pro_level: proLevel}
+        const specObj = {user_id: currentUser.id, name: specialty, pro_level: proLevel}
             fetch (`${API}/specialties`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -127,7 +127,7 @@ function Profile({
 
     function onAddEquip(e){
         e.preventDefault()
-        const equipObj = {user_id: currentUser.id, equip_name: equipment, equip_link: equipmentLink}
+        const equipObj = {user_id: currentUser.id, name: equipment, equip_link: equipmentLink}
             fetch (`${API}/equipment`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
