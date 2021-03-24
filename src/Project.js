@@ -2,12 +2,32 @@ import React from "react";
 import {useState, useEffect} from "react";
 import {useHistory, useParams} from "react-router-dom";
 
-function Project({API}){
+function Project({API, projCollabArray}){
     
     const [thisProject, setThisProject] = useState("")
     const params = useParams()
     const history = useHistory()
     const project_id = params.id
+
+    const thisProjCollabs = projCollabArray.map((collab) => {
+        if(collab.project_id == project_id){
+            console.log(collab)
+            return(
+            <>
+            <figure className="caption-2 mb-0 shadow-sm border border-white border-md">
+                <img src={collab.profile_pic} alt={collab.username}/>
+                <figcaption className="p-4 bg-white">
+                    <h2 className="h5 font-weight-bold mb-2 font-italic">{collab.username}</h2>
+                    <p className="mb-0 text-small font-italic text-muted">{collab.bio}</p>
+                    <br></br>
+                    <p className="mb-0 text-small font-italic text-muted"></p>
+                    <br></br>
+                </figcaption>
+            </figure>
+            </>
+            )
+        }
+    })
 
     useEffect(() => {
         fetch(`${API}/projects/${project_id}`)
@@ -48,6 +68,9 @@ function Project({API}){
                         </ul>
                 </figcaption>
             </figure>
+        </div>
+        <div className="col-lg-4">
+            {thisProjCollabs}
         </div>
         </>
     )

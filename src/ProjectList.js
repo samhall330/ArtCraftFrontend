@@ -1,14 +1,14 @@
 import React from "react";
 import ProjectCard from "./ProjectCard"
 
-function ProjectList({currentUser, API, projectsArray, setProjectArray, ProjectCardClick}){
+function ProjectList({currentUser, API, projectsArray, setProjectArray, ProjectCardClick, projCollabArray}){
 
 
     const userProjects = projectsArray.map((project) => {
         if(project.user_id == currentUser.id){
             return (
                 // <div className="row py-5">
-                <ProjectCard project={project} key={project.id} currentUser={currentUser}/>
+                <ProjectCard project={project} key={project.id} currentUser={currentUser} projCollabArray={projCollabArray}/>
                 
             )
         }

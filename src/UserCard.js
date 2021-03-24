@@ -3,7 +3,7 @@ import {useState} from "react";
 
 function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArray, API}){
 
-    const {name, bio, profile_pic, id} = collaborator
+    const {name, bio, profile_pic, id, specialties} = collaborator
     const [btnState, setBtnState] = useState(false)
     const [thisCollabId, setThisCollabId] = useState("")
     const [thisProjectId, setThisProjectId] = useState("")
@@ -34,7 +34,7 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
     function onAddCollab(e){
         e.preventDefault()
         const collabObj = {user_id: thisCollabId, project_id: thisProjectId}
-        fetch (`${API}/collaborators`,{
+        fetch (`http://localhost:3000/collaborators`,{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(collabObj)
@@ -59,6 +59,8 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
                 <figcaption className="p-4 bg-white">
                     <h2 className="h5 font-weight-bold mb-2 font-italic">{name}</h2>
                     <p className="mb-0 text-small font-italic text-muted">{bio}</p>
+                    <br></br>
+                    <p className="mb-0 text-small font-italic text-muted"></p>
                     <br></br>
                     <button onClick={onCollabBtnClick} className="btn btn-outline-dark btn-sm btn-block">Add Collaborator</button>
                     {btnState? 

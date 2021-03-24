@@ -151,7 +151,7 @@ function Profile({
     function onAddSoftware(e){
         e.preventDefault()
         const softwareObj = {user_id: currentUser.id, name: software, soft_link: softwareLink}
-        console.log(softwareObj)
+        // console.log(softwareObj)
             fetch(`${API}/softwares`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},

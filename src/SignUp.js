@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 
 function SignUp({users, setUsers, currentUser, setCurrentUser, API}){
     const history = useHistory()
-    const [signUpForm, setSignUpForm] = useState({name: null, username: null, profile_pic: null, phone: null, password: null})
+    const [signUpForm, setSignUpForm] = useState({name: null, username: null, profile_pic: null, bio: null, phone: null, password: null})
 
     function handleSignUp(e){
         const thisForm = {...signUpForm}
@@ -45,6 +45,9 @@ function SignUp({users, setUsers, currentUser, setCurrentUser, API}){
                                 </div>
                                 <div className="form-group mb-3">
                                     <input onChange={handleSignUp} id="inputProfilePic" name="profile_pic" type="profile-pic" placeholder="Profile Pic" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                                </div>
+                                <div className="form-group mb-3">
+                                    <input onChange={handleSignUp} id="inputBio" name="bio" type="bio" placeholder="Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                                 </div>
                                 <div className="form-group mb-3">
                                     <input onChange={handleSignUp} id="inputPhone" name="phone" type="tel" placeholder="Phone Number" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>

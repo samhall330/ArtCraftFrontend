@@ -113,16 +113,16 @@ function App() {
       <Route exact path="/profile">
         {currentUser && <Profile API={API} currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
       </Route>
-      <Route exact path="/projects">
+      <Route exact path="/projects-list">
         {currentUser && <h5 className="display-4">{currentUser.name}'s Projects</h5> }
         <div className="row py-5">
-        <ProjectList currentUser={currentUser} API={API} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
+        <ProjectList currentUser={currentUser} API={API} projectsArray={projectsArray} setProjectsArray={setProjectsArray} projCollabArray={projCollabArray}/>
         </div>
       </Route>
       <Route exact path="/projects/:id">
-        <Project API={API}/>
+        <Project API={API} projCollabArray={projCollabArray}/>
       </Route>
-      <Route exact path="/new_project">
+      <Route exact path="/new-project">
         <NewProject API={API} currentUser={currentUser} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
       </Route>
       </Switch>
