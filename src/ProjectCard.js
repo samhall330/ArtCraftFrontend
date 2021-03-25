@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useParams, useHistory} from "react-router-dom";
+// import React, {useState} from "react";
+import {useHistory} from "react-router-dom";
 import './project-card.css';
 
 function ProjectCard({currentUser, project, projCollabArray}){
@@ -30,6 +30,8 @@ function ProjectCard({currentUser, project, projCollabArray}){
                 <figcaption className="p-4 bg-white">
                     <h2 className="h5 font-weight-bold mb-2 font-italic">{title}</h2>
                     <p className="mb-0 text-small font-italic text-muted">{project_type} | {location}</p>
+                    <p className="mb-0 text-small font-italic text-muted">Duration: {duration}</p>
+                    <p className="mb-0 text-small font-italic text-muted">Start Date: {start_date}</p>
                 </figcaption>
             </figure>
         </div>

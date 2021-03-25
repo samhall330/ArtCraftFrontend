@@ -38,8 +38,8 @@ function Project({API, projCollabArray}){
         history.push("/search")
     }
 
-    const {id, title, project_type, start_date, duration, location} = thisProject
-    console.log(thisProject)
+    const {title, project_type, start_date, duration, location} = thisProject
+    // console.log(thisProject)
 
     let image = ""
 

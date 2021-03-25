@@ -1,6 +1,6 @@
 // import userEvent from "@testing-library/user-event";
-import React, {useState, useEffect} from "react";
-import {useParams, useHistory} from "react-router-dom";
+import React, {useState} from "react";
+// import {useHistory} from "react-router-dom";
 // import {Link} from "react-router-dom";
 
 function Profile({
@@ -12,18 +12,20 @@ function Profile({
     softwareArray,
     setSoftwareArray,
     API}) {
+    // const history = useHistory()    
     const [bioBtnClick, setBioBtnClick] = useState(false)
     const [specBtnClick, setSpecBtnClick] = useState(false)
     const [equipBtnClick, setEquipBtnClick] = useState(false)
     const [softBtnClick, setSoftBtnClick] = useState(false)
     const [bio, setBio] = useState("")
+    const [currentBio, setCurrentBio] = useState(currentUser.bio)
     const [specialty, setSpecialty] = useState("")
     const [proLevel, setProLevel] = useState("")
     const [equipment, setEquipment] = useState("")
     const [equipmentLink, setEquipmentLink] = useState("")
     const [software, setSoftware] = useState("")
     const [softwareLink, setSoftwareLink] = useState("")
-    const [bioUpdateForm, setBioUpdateForm] = useState({bio: null})
+    // const [bioUpdateForm, setBioUpdateForm] = useState({bio: null})
     // const history = useHistory()
 
     // function projectCardClick(e){
@@ -83,16 +85,15 @@ function Profile({
     function bioFormSubmit(e){
         e.preventDefault()
         const bioObj = {bio: bio}
-        fetch(`${API}/${currentUser.id}`,{
+        fetch(`${API}/users/${currentUser.id}`,{
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(bioObj)
         })
         .then(r => r.json())
-        .then(data =>{
-            // console.log(data)
-        })
+        .then(data => setCurrentBio(data))
     }
+    
 
     function handleChangeSpec(e){
         setSpecialty(e.target.value)
@@ -181,9 +182,9 @@ function Profile({
             <div className="px-4 py-3">
                 <h5 className="mb-0">Bio</h5>
                 <div className="p-4 rounded shadow-sm bg-light">
-                    <p className="font-italic mb-0">{currentUser.bio}</p>
+                    <p className="font-italic mb-0">{currentBio}</p>
                     <br></br>
-                    {/* <button onClick={handleEditBio} className="btn btn-outline-dark btn-sm btn-block">Edit Bio</button> */}
+                    <button onClick={handleEditBio} className="btn btn-outline-dark btn-sm btn-block">Edit Bio</button>
                     <br></br>
                     {bioBtnClick? <form onSubmit={bioFormSubmit}><input onChange={handleBioChange} id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>

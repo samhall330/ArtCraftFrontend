@@ -1,3 +1,4 @@
+// import userEvent from "@testing-library/user-event";
 import React from "react";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
@@ -19,6 +20,12 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
             </>
         )}
     })
+
+    // const specialtiesList = specialties.map((spec) =>{
+    //     return(
+    //         <li>{spec}</li>
+    //     )
+    // })
 
     function handleProjSelect(e){
         projectsArray.map((project) => {
@@ -57,6 +64,7 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
                 <figcaption className="p-4 bg-white">
                     <h2 className="h5 font-weight-bold mb-2 font-italic">{name}</h2>
                     <p className="mb-0 text-small font-italic text-muted">{bio}</p>
+                    {/* <ul className="mb-0 text-small font-italic text-muted">{specialtiesList}</ul> */}
                     <br></br>
                     <p className="mb-0 text-small font-italic text-muted"></p>
                     <br></br>
