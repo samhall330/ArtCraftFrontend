@@ -1,34 +1,32 @@
 import React from "react";
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
 function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArray, API, projectsArray}){
 
+    const history = useHistory()
     const {name, bio, profile_pic, id, specialties} = collaborator
     const [btnState, setBtnState] = useState(false)
     const [thisCollabId, setThisCollabId] = useState("")
     const [thisProjectId, setThisProjectId] = useState("")
     
 
-    const userProjectSelect = currentUser.projects.map((project) => {
+    const userProjectSelect = projectsArray.map((project) => {
+        if(project.user_id === currentUser.id){
         return(
             <>
             <option>{project.title}</option>
             </>
-        )
+        )}
     })
 
     function handleProjSelect(e){
-        console.log(e.target.value)
-        console.log(currentUser.projects)
-        currentUser.projects.map((project) => {
+        projectsArray.map((project) => {
             if(project.title === e.target.value){
-                console.log(project.id)
                 setThisProjectId(project.id)
             }
         })
         setThisCollabId(id)
-        // console.log(thisCollabId)
-        // console.log(thisProjectId)
     }
 
     function onAddCollab(e){
@@ -42,7 +40,7 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
         .then(r => r.json())
         .then(data => {
             setProjCollabArray([...projCollabArray, data])
-            // ***CLEAR INPUT FIELDS***
+            history.push(`/projects/${thisProjectId}`)
         })
 
     }
@@ -67,7 +65,8 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
                     <>
                     <form onSubmit={onAddCollab}>
                     <br></br><label for="project_select">Invite Collaborator to:</label>
-                    <select onChange={handleProjSelect} name="project_select" id="project_select" >
+                    <select onChange={handleProjSelect} value="" name="project_select" id="project_select" >
+                    <option>Select Project:</option>
                     {userProjectSelect}
                     </select>
                     <br></br>

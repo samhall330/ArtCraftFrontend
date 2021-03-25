@@ -18,7 +18,9 @@ function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArra
 
   function handleSearch(e){
     const collaboratorsArray = users.filter((user) => checkArray(user.specialties))
+    // || user.equipment || user.softwares
     // console.log(collaboratorsArray)
+    // DONT RETURN currentUser card
     setCollabCardArray(collaboratorsArray)
   }
 

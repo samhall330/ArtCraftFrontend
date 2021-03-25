@@ -11,7 +11,6 @@ function Project({API, projCollabArray}){
 
     const thisProjCollabs = projCollabArray.map((collab) => {
         if(collab.project_id == project_id){
-            console.log(collab)
             return(
             <>
             <figure >
