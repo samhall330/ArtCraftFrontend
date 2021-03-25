@@ -183,7 +183,7 @@ function Profile({
                 <div className="p-4 rounded shadow-sm bg-light">
                     <p className="font-italic mb-0">{currentUser.bio}</p>
                     <br></br>
-                    <button onClick={handleEditBio} className="btn btn-outline-dark btn-sm btn-block">Edit Bio</button>
+                    {/* <button onClick={handleEditBio} className="btn btn-outline-dark btn-sm btn-block">Edit Bio</button> */}
                     <br></br>
                     {bioBtnClick? <form onSubmit={bioFormSubmit}><input onChange={handleBioChange} id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>

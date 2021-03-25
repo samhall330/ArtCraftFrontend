@@ -14,7 +14,7 @@ function Project({API, projCollabArray}){
             console.log(collab)
             return(
             <>
-            <figure className="caption-2 mb-0 shadow-sm border border-white border-md">
+            <figure >
                 <img src={collab.profile_pic} alt={collab.username}/>
                 <figcaption className="p-4 bg-white">
                     <h2 className="h5 font-weight-bold mb-2 font-italic">{collab.username}</h2>
@@ -40,6 +40,7 @@ function Project({API, projCollabArray}){
     }
 
     const {id, title, project_type, start_date, duration, location} = thisProject
+    console.log(thisProject)
 
     let image = ""
 
@@ -69,7 +70,7 @@ function Project({API, projCollabArray}){
                 </figcaption>
             </figure>
         </div>
-        <div className="col-lg-4">
+        <div>
             {thisProjCollabs}
         </div>
         </>

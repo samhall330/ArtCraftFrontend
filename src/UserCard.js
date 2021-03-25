@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from "react";
 
-function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArray, API}){
+function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArray, API, projectsArray}){
 
     const {name, bio, profile_pic, id, specialties} = collaborator
     const [btnState, setBtnState] = useState(false)
