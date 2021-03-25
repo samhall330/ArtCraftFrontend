@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,200,300,800);
+figure.snip0064 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 220px;
+  max-width: 480px;
+  max-height: 260px;
+  width: 100%;
+  background: #ffffff;
+  color: #ffffff;
+  border: 10px solid #ffffff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+figure.snip0064 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+figure.snip0064 .image {
+  position: relative;
+  width: 58%;
+  overflow: hidden;
+  left: -14%;
+  z-index: 1;
+  box-shadow: 0px 0 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: skewX(-15deg);
+  transform: skewX(-15deg);
+}
+figure.snip0064 .image img {
+  position: relative;
+  right: -20%;
+  max-width: 100%;
+  -webkit-transform: skewX(15deg);
+  transform: skewX(15deg);
+}
+figure.snip0064 figcaption {
+  background: #262626;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+figure.snip0064 figcaption h2,
+figure.snip0064 figcaption p {
+  margin: 0;
+  text-align: right;
+  width: 100%;
+}
+figure.snip0064 figcaption h2 {
+  bottom: 40px;
+  position: absolute;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 1.3em;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+figure.snip0064 figcaption h2 span {
+  font-weight: 800;
+}
+figure.snip0064 figcaption p {
+  padding: 20px;
+  width: 50%;
+  right: 0;
+  bottom: 80px;
+  position: absolute;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+figure.snip0064 figcaption .position {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  line-height: 40px;
+  padding-right: 20px;
+  font-style: italic;
+  font-size: 10px;
+}
+figure.snip0064 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+figure.snip0064.blue figcaption {
+  background: #20638f;
+}
+figure.snip0064.red figcaption {
+  background: #962d22;
+}
+figure.snip0064.yellow figcaption {
+  background: #bf6516;
+}
+figure.snip0064:hover figcaption,
+figure.snip0064.hover figcaption {
+  background: #333333;
+}
+figure.snip0064:hover.blue figcaption,
+figure.snip0064.hover.blue figcaption {
+  background: #2472a4;
+}
+figure.snip0064:hover.red figcaption,
+figure.snip0064.hover.red figcaption {
+  background: #ab3326;
+}
+figure.snip0064:hover.yellow figcaption,
+figure.snip0064.hover.yellow figcaption {
+  background: #d67118;
+}
+figure.snip0064:hover .image,
+figure.snip0064.hover .image {
+  box-shadow: 0px 0 0px rgba(0, 0, 0, 0.5);
+}
+
+btn.btn-outline-dark btn-sm btn-block {
+    max-width: 10px;
+}
+
+
+/* Demo purposes only */
+html {
+  height: 100%;
+}
+/* body {
+  background-color: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  margin: 0;
+  height: 100%;
+} */

@@ -2,11 +2,12 @@
 import React from "react";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
+import './user-card.css';
 
 function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArray, API, projectsArray}){
 
     const history = useHistory()
-    const {name, bio, profile_pic, id, specialties} = collaborator
+    const {name, bio, profile_pic, id} = collaborator
     const [btnState, setBtnState] = useState(false)
     const [thisCollabId, setThisCollabId] = useState("")
     const [thisProjectId, setThisProjectId] = useState("")
@@ -21,11 +22,20 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
         )}
     })
 
+    const specName = collaborator.specialties.map((spec) => {
+        return(
+            <li>{spec.name}</li>
+            )
+    })
+    // console.log(specname)
+
+
     // const specialtiesList = specialties.map((spec) =>{
     //     return(
-    //         <li>{spec}</li>
+    //         <li>{spec.name}</li>
     //     )
     // })
+    // console.log(specialtiesList)
 
     function handleProjSelect(e){
         projectsArray.map((project) => {
@@ -58,17 +68,15 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
 
     return(
         <>
-        <div className="col-lg-4">
-            <figure className="caption-2 mb-0 shadow-sm border border-white border-md">
-                <img src={profile_pic} alt={name}/>
-                <figcaption className="p-4 bg-white">
-                    <h2 className="h5 font-weight-bold mb-2 font-italic">{name}</h2>
-                    <p className="mb-0 text-small font-italic text-muted">{bio}</p>
-                    {/* <ul className="mb-0 text-small font-italic text-muted">{specialtiesList}</ul> */}
-                    <br></br>
-                    <p className="mb-0 text-small font-italic text-muted"></p>
-                    <br></br>
-                    <button onClick={onCollabBtnClick} className="btn btn-outline-dark btn-sm btn-block">Add Collaborator</button>
+        <figure class="snip0064 red">
+            <figcaption>
+                <p>{specName}</p>
+                <h2>{name}</h2><span class="position">{bio}</span>
+            </figcaption>
+            <div class="image"><img src={profile_pic} alt={name}/></div>
+            <a href="#"></a>
+        </figure>
+        <button onClick={onCollabBtnClick} className="">Add Collaborator</button>
                     {btnState? 
                     <>
                     <form onSubmit={onAddCollab}>
@@ -82,10 +90,9 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
                     </form>
                     </>
                     : null}
-                </figcaption>
-            </figure>
-        </div>
+        
         </>
+
     )
 }
 

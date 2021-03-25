@@ -1,10 +1,12 @@
 import React from "react";
 import {useState} from "react";
 import UserCard from "./UserCard";
+import './index.css';
 
 function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArray, setProjCollabArray, API, projectsArray}){
 
   const [collabCardArray, setCollabCardArray] = useState([])
+  const [array, setArray] = useState([])
 
   function checkArray(array){
     let userAttribute = false
@@ -17,11 +19,11 @@ function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArra
   }
 
   function handleSearch(e){
+    if(!currentUser){
+        alert("Please Log In or Sign Up to Add Collaborators")}
+    else {
     const collaboratorsArray = users.filter((user) => checkArray(user.specialties))
-    // || user.equipment || user.softwares
-    // console.log(collaboratorsArray)
-    // DONT RETURN currentUser card
-    setCollabCardArray(collaboratorsArray)
+    setCollabCardArray(collaboratorsArray)}
   }
 
   const collaborators = collabCardArray.map((collaborator) => {

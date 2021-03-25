@@ -91,7 +91,7 @@ function Profile({
             body: JSON.stringify(bioObj)
         })
         .then(r => r.json())
-        .then(data => setCurrentBio(data))
+        .then(data => setCurrentBio(data.bio))
     }
     
 

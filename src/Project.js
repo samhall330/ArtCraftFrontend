@@ -1,6 +1,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import {useHistory, useParams} from "react-router-dom";
+import './user-card.css';
 
 function Project({API, projCollabArray}){
     
@@ -13,15 +14,13 @@ function Project({API, projCollabArray}){
         if(collab.project_id == project_id){
             return(
             <>
-            <figure >
-                <img src={collab.profile_pic} alt={collab.username}/>
-                <figcaption className="p-4 bg-white">
-                    <h2 className="h5 font-weight-bold mb-2 font-italic">{collab.username}</h2>
-                    <p className="mb-0 text-small font-italic text-muted">{collab.bio}</p>
-                    <br></br>
-                    <p className="mb-0 text-small font-italic text-muted"></p>
-                    <br></br>
+            <figure class="snip0064 red">
+                <figcaption>
+                    {/* <p>{specName}</p> */}
+                    <h2>{collab.username}</h2><span class="position">{collab.bio}</span>
                 </figcaption>
+                <div class="image"><img src={collab.profile_pic} alt={collab.username}/></div>
+                <a href="#"></a>
             </figure>
             </>
             )
@@ -54,6 +53,7 @@ function Project({API, projCollabArray}){
     return(
         <>
         <div>
+        <div class="col-lg-11 mx-auto">
             <figure className="caption-2 mb-0 shadow-sm border border-white border-md">
                 <img src={image} alt="" className="w-100"/>
                 <figcaption className="p-4 bg-white">
@@ -68,10 +68,9 @@ function Project({API, projCollabArray}){
                         </ul>
                 </figcaption>
             </figure>
+            </div>
         </div>
-        <div>
             {thisProjCollabs}
-        </div>
         </>
     )
 }
