@@ -6,12 +6,11 @@ import './index.css';
 function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArray, setProjCollabArray, API, projectsArray}){
 
   const [collabCardArray, setCollabCardArray] = useState([])
-  const [array, setArray] = useState([])
 
   function checkArray(array){
     let userAttribute = false
     array.map((spec) => {
-      if (spec.name.includes(searchQuery)){
+      if (spec.includes(searchQuery)){
         userAttribute = true
       }
     })
@@ -22,7 +21,7 @@ function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArra
     if(!currentUser){
         alert("Please Log In or Sign Up to Add Collaborators")}
     else {
-    const collaboratorsArray = users.filter((user) => checkArray(user.specialties))
+    const collaboratorsArray = users.filter((user) => checkArray(user.search_array))
     setCollabCardArray(collaboratorsArray)}
   }
 
