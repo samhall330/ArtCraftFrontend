@@ -4,6 +4,7 @@ import React, {useState} from "react";
 // import {Link} from "react-router-dom";
 
 function Profile({
+    onDeleteSpec,
     currentUser, 
     specialtyArray, 
     setSpecialtyArray, 
@@ -48,13 +49,22 @@ function Profile({
         setSoftBtnClick(!softBtnClick)
     }
 
+    function onDelete(id){
+        onDeleteSpec(id)
+    }
+
     const userSpecialties = specialtyArray.map((specialty) => {
+        
         if (specialty.user_id === currentUser.id){
+
             return(
                 <ul>
-                <li><p key={specialty.user_id} className="font-italic mb-0">{specialty.name} | {specialty.pro_level}</p></li>
-                </ul>
+            <li><p key={specialty.user_id} className="font-italic mb-0">{specialty.name} | {specialty.pro_level}</p></li>
+            <button onClick={onDelete}>Delete</button>
+            </ul>
+                // <userSpecList specialty={specialty} onDelete={onDelete}/>
             )
+        
         }
     })
 
@@ -202,6 +212,7 @@ function Profile({
                     {specBtnClick? <form onSubmit={onAddSpec}><input onChange={handleChangeSpec} id="inputSpec" name="add_spec" type="add_spec" placeholder="Add Specialty" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <label for="pro_level">Professional Level:</label>
                     <select onChange={handleChangeProLevel} name="pro_level" id="pro_level">
+                        <option>Professional Level:</option>
                         <option value="Amateur">Amateur</option>
                         <option value="Semi-Pro">Semi-Professional</option>
                         <option value="Professional">Professional</option>

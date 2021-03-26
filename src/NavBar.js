@@ -6,7 +6,7 @@ function NavBar({currentUser, handleLogOut}){
     return(
         <nav className="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
         <div className="container">
-            <a href="/search" className="navbar-brand">
+            <a href="/about" className="navbar-brand">
             <img src="AC Logo.png" width="150px" height="auto" alt="Art Craft Logo" className="d-inline-block align-middle mr-2"/>
             <span className="text-uppercase font-weight-bold"></span>
             </a>

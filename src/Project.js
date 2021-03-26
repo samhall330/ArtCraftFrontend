@@ -20,7 +20,6 @@ function Project({API, projCollabArray}){
                     <h2>{collab.username}</h2><span class="position">{collab.bio}</span>
                 </figcaption>
                 <div class="image"><img src={collab.profile_pic} alt={collab.username}/></div>
-                <a href="#"></a>
             </figure>
             </>
             )

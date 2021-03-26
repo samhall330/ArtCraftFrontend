@@ -11,7 +11,6 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
     const [btnState, setBtnState] = useState(false)
     const [thisCollabId, setThisCollabId] = useState("")
     const [thisProjectId, setThisProjectId] = useState("")
-    
 
     const userProjectSelect = projectsArray.map((project) => {
         if(project.user_id === currentUser.id){
@@ -27,15 +26,16 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
             <li>{spec.name}</li>
             )
     })
-    // console.log(specname)
-
-
-    // const specialtiesList = specialties.map((spec) =>{
-    //     return(
-    //         <li>{spec.name}</li>
-    //     )
-    // })
-    // console.log(specialtiesList)
+    const equipName = collaborator.equipments.map((equipment) => {
+        return(
+            <li>{equipment.name}</li>
+            )
+    })
+    const softName = collaborator.softwares.map((software) => {
+        return(
+            <li>{software.name}</li>
+            )
+    })
 
     function handleProjSelect(e){
         projectsArray.map((project) => {
@@ -70,11 +70,12 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
         <>
         <figure class="snip0064 red">
             <figcaption>
-                <p>{specName}</p>
+                <ul>
+                <p>Specialties: {specName} Equipment: {equipName} Software: {softName}</p>
+                </ul>
                 <h2>{name}</h2><span class="position">{bio}</span>
             </figcaption>
             <div class="image"><img src={profile_pic} alt={name}/></div>
-            <a href="#"></a>
         </figure>
         <button onClick={onCollabBtnClick} className="">Add Collaborator</button>
                     {btnState? 

@@ -2,6 +2,7 @@ import React from "react";
 import {Switch, Route} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
+import About from "./About"
 import Login from "./Login";
 import SignUp from "./SignUp";
 import NavBar from "./NavBar";
@@ -94,6 +95,14 @@ function App() {
     })
   }
 
+  function onDeleteSpec(id){
+    fetch(`http://localhost:3000/specialties/${id}`, {
+      method: "DELETE"
+    })
+    const newSpecsArr = specialtyArray.filter((spec) => spec.id !== id)
+    setSpecialtyArray(newSpecsArr)
+  }
+
   return (
     <div>
       <div class="container py-5">
@@ -101,6 +110,9 @@ function App() {
       <div class="row">
       <div class="col-lg-11 mx-auto">
       <Switch>
+      <Route exact path="/about">
+        <About />
+      </Route>
       <Route exact path="/search">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray} API={API} projectsArray={projectsArray}/>
       </Route>
@@ -111,7 +123,7 @@ function App() {
         <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} users={users} setUsers={setUsers} API={API}/>
       </Route>
       <Route exact path="/profile">
-        {currentUser && <Profile API={API} currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
+        {currentUser && <Profile onDeleteSpec={onDeleteSpec} API={API} currentUser={currentUser} specialtyArray={specialtyArray} setSpecialtyArray={setSpecialtyArray} equipmentArray={equipmentArray} setEquipmentArray={setEquipmentArray} softwareArray={softwareArray} setSoftwareArray={setSoftwareArray}/>}
       </Route>
       <Route exact path="/projects-list">
         {currentUser && <h5 className="display-4">{currentUser.name}'s Projects</h5> }
