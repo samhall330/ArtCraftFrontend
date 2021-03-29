@@ -66,8 +66,7 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
         setBtnState(!btnState)
     }
 
-    function userCardClick(e){
-        console.log(e)
+    function userCardClick(){
         history.push(`/collaborators/${id}`)
     }
 
