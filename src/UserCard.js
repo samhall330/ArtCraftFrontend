@@ -66,6 +66,11 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
         setBtnState(!btnState)
     }
 
+    function userCardClick(e){
+        console.log(e)
+        history.push(`/collaborators/${id}`)
+    }
+
     return(
         <>
         <figure class="snip0064 red">
@@ -77,6 +82,7 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
             </figcaption>
             <div class="image"><img src={profile_pic} alt={name}/></div>
         </figure>
+        <button onClick={userCardClick}>Go to Profile</button> &nbsp;
         <button onClick={onCollabBtnClick} className="">Add Collaborator</button>
                     {btnState? 
                     <>

@@ -18,8 +18,10 @@ function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArra
   }
 
   function handleSearch(e){
-    if(!currentUser){
-        alert("Please Log In or Sign Up to Add Collaborators")}
+    
+    if(searchQuery == ""){
+      console.log(searchQuery)
+        alert("Please enter a valid search term.")}
     else {
     const collaboratorsArray = users.filter((user) => checkArray(user.search_array))
     setCollabCardArray(collaboratorsArray)}

@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import ProjectList from "./ProjectList";
 import Project from "./Project";
 import NewProject from "./NewProject";
+import CollabProfile from "./CollabProfile";
 
 function App() {
   const API = "http://localhost:3000"
@@ -136,6 +137,9 @@ function App() {
       </Route>
       <Route exact path="/new-project">
       {currentUser && <NewProject API={API} currentUser={currentUser} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>}
+      </Route>
+      <Route exact path="/collaborators/:id">
+      <CollabProfile API={API} currentUser={currentUser} specialtyArray={specialtyArray} equipmentArray={equipmentArray} softwareArray={softwareArray} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray} projectsArray={projectsArray}/>
       </Route>
       </Switch>
       </div>
