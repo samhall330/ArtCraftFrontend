@@ -135,7 +135,7 @@ function App() {
         <Project API={API} projCollabArray={projCollabArray}/>
       </Route>
       <Route exact path="/new-project">
-        <NewProject API={API} currentUser={currentUser} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>
+      {currentUser && <NewProject API={API} currentUser={currentUser} projectsArray={projectsArray} setProjectsArray={setProjectsArray}/>}
       </Route>
       </Switch>
       </div>

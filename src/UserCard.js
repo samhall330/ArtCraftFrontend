@@ -71,7 +71,7 @@ function UserCard({collaborator, currentUser, projCollabArray, setProjCollabArra
         <figure class="snip0064 red">
             <figcaption>
                 <ul>
-                <p>Specialties: {specName} Equipment: {equipName} Software: {softName}</p>
+                <p><b>Specialties:</b> {specName} <b>Equipment:</b> {equipName} <b>Software:</b> {softName}</p>
                 </ul>
                 <h2>{name}</h2><span class="position">{bio}</span>
             </figcaption>
