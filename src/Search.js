@@ -18,15 +18,17 @@ function Search({searchQuery, setSearchQuery, currentUser, users, setUsers, proj
 
 
   function checkArray(array){
+    if(searchQuery == "" || " "){
+      alert("Please enter a valid search term")
+    } else {
     let userAttribute = false
     array.map((spec) => {
-      console.log(spec)
-      if (spec.user_id != currentUser.id && spec.name.includes(searchQuery)){
+      if (spec.user_id != currentUser.id && spec.name.toLowerCase().includes(searchQuery.toLowerCase())){
         userAttribute = true
       }
     })
     return userAttribute
-  }
+  }}
 
   function handleSearch(e){
     const collaboratorsArray = users.filter((user) => checkArray(user.search_array))
