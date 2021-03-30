@@ -1,16 +1,27 @@
 import React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import UserCard from "./UserCard";
 import './index.css';
 
-function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArray, setProjCollabArray, API, projectsArray}){
+function Search({searchQuery, setSearchQuery, currentUser, users, setUsers, projCollabArray, setProjCollabArray, API, projectsArray}){
 
   const [collabCardArray, setCollabCardArray] = useState([])
+
+  useEffect(() => {
+    fetch(`${API}/users`)
+    .then(r => r.json())
+    .then(data => {
+      setUsers(data)
+    })
+  }, [])
+
+
 
   function checkArray(array){
     let userAttribute = false
     array.map((spec) => {
-      if (spec.includes(searchQuery)){
+      console.log(spec)
+      if (spec.user_id != currentUser.id && spec.name.includes(searchQuery)){
         userAttribute = true
       }
     })
@@ -18,13 +29,8 @@ function Search({searchQuery, setSearchQuery, currentUser, users, projCollabArra
   }
 
   function handleSearch(e){
-    
-    if(searchQuery == ""){
-      console.log(searchQuery)
-        alert("Please enter a valid search term.")}
-    else {
     const collaboratorsArray = users.filter((user) => checkArray(user.search_array))
-    setCollabCardArray(collaboratorsArray)}
+    setCollabCardArray(collaboratorsArray)
   }
 
   const collaborators = collabCardArray.map((collaborator) => {

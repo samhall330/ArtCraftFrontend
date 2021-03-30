@@ -60,7 +60,7 @@ function Profile({
             return(
                 <ul>
             <li><p key={specialty.user_id} className="font-italic mb-0">{specialty.name} | {specialty.pro_level}</p></li>
-            <button onClick={onDelete}>Delete</button>
+            {/* <button onClick={onDelete}>Delete</button> */}
             </ul>
                 // <userSpecList specialty={specialty} onDelete={onDelete}/>
             )

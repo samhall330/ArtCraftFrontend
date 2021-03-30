@@ -115,7 +115,7 @@ function App() {
         <About />
       </Route>
       <Route exact path="/search">
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray} API={API} projectsArray={projectsArray}/>
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} currentUser={currentUser} users={users} setUsers={setUsers} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray} API={API} projectsArray={projectsArray}/>
       </Route>
       <Route exact path="/login">
         <Login currentUser={currentUser} setCurrentUser={setCurrentUser} API={API}/>
