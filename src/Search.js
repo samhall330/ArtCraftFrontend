@@ -18,9 +18,9 @@ function Search({searchQuery, setSearchQuery, currentUser, users, setUsers, proj
 
 
   function checkArray(array){
-    if(searchQuery == "" || " "){
-      alert("Please enter a valid search term")
-    } else {
+    // if(searchQuery === "" || " "){
+    //   alert("Please enter a valid search term")
+    // } else {
     let userAttribute = false
     array.map((spec) => {
       if (spec.user_id != currentUser.id && spec.name.toLowerCase().includes(searchQuery.toLowerCase())){
@@ -28,7 +28,7 @@ function Search({searchQuery, setSearchQuery, currentUser, users, setUsers, proj
       }
     })
     return userAttribute
-  }}
+  }
 
   function handleSearch(e){
     const collaboratorsArray = users.filter((user) => checkArray(user.search_array))
