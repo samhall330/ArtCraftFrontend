@@ -102,6 +102,7 @@ function Profile({
         })
         .then(r => r.json())
         .then(data => setCurrentBio(data.bio))
+            setBioBtnClick(!bioBtnClick)
     }
     
 
@@ -124,7 +125,7 @@ function Profile({
             .then(r => r.json())
             .then(data => {
                 setSpecialtyArray([...specialtyArray, data])
-                // ***CLEAR INPUT FIELDS***
+                setSpecBtnClick(!specBtnClick)
             })
     }
 
@@ -147,7 +148,7 @@ function Profile({
             .then(r => r.json())
             .then(data => {
                 setEquipmentArray([...equipmentArray, data])
-                // ***CLEAR INPUT FIELDS***
+                setEquipBtnClick(!equipBtnClick)
             })
     }
 
@@ -171,7 +172,7 @@ function Profile({
             .then(r => r.json())
             .then(data => {
                 setSoftwareArray([...softwareArray, data])
-                // ***CLEAR INPUT FIELDS***
+                setSoftBtnClick(!softBtnClick)
             })
     }
 
