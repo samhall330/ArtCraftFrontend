@@ -1,7 +1,7 @@
 
 🎞 Welcome to ArtCraft! 🎨
 
-![alt text](images/projectspage.png)
+![alt text](projectspage.png)
 
 This single page app is a virtual artist collective in which users can create projects and add other users as collaborators to said projects.
 
