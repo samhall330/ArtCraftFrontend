@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, Redirect} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import About from "./About"
@@ -112,7 +112,7 @@ function App() {
       <div class="col-lg-11 mx-auto">
       <Switch>
       <Route exact path="/about">
-        <About />
+        <Redirect to="/about" />
       </Route>
       <Route exact path="/search-site">
         <Search currentUser={currentUser} users={users} setUsers={setUsers} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray} API={API} projectsArray={projectsArray}/>
