@@ -18,7 +18,9 @@ function Profile({
     const [specBtnClick, setSpecBtnClick] = useState(false)
     const [equipBtnClick, setEquipBtnClick] = useState(false)
     const [softBtnClick, setSoftBtnClick] = useState(false)
+    const [profilePicBtnClick, setprofilePicBtnClick] = useState(false)
     const [bio, setBio] = useState("")
+    const [profilePic, setProfilePic] = useState("")
     const [currentBio, setCurrentBio] = useState(currentUser.bio)
     const [specialty, setSpecialty] = useState("")
     const [proLevel, setProLevel] = useState("")
@@ -92,6 +94,10 @@ function Profile({
         setBio(e.target.value)
     }
 
+    function handleProfilePicChange(e){
+        setProfilePic(e.target.value)
+    }
+
     function bioFormSubmit(e){
         e.preventDefault()
         const bioObj = {bio: bio}
@@ -104,7 +110,19 @@ function Profile({
         .then(data => setCurrentBio(data.bio))
             setBioBtnClick(!bioBtnClick)
     }
-    
+
+    function profilePicFormSubmit(e){
+        e.preventDefault()
+        const profilePicObj = {profilePic: profilePic}
+        fetch(`${API}/users/${currentUser.id}`,{
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(bioObj)
+        })
+        .then(r => r.json())
+        .then(data => setCurrentProfilePic(data.profilePic))
+            setProfilePicBtnClick(!ProfilePicBtnClick)
+    }
 
     function handleChangeSpec(e){
         setSpecialty(e.target.value)
@@ -198,9 +216,10 @@ function Profile({
                     <button onClick={handleEditBio} className="btn btn-outline-dark btn-sm btn-block">Edit Bio</button>
                     <br></br>
                     {bioBtnClick? <form onSubmit={bioFormSubmit}><input onChange={handleBioChange} id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
+                    <form onSubmit={profilePicFormSubmit}><input onChange={handleProfilePicChange} id="inputBio" name="update_bio" type="update_bio" placeholder="Update Bio" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary"/>
                     <br></br>
                     <input type="submit" value="Submit"></input>
-                    </form> : null}
+                    </form></form> : null}
                 </div>
             </div>
             <div className="px-4 py-3">
