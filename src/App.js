@@ -111,9 +111,9 @@ function App() {
       <div class="row">
       <div class="col-lg-11 mx-auto">
       <Switch>
-      {/* <Route exact path="/about">
-        <Redirect to="/about" />
-      </Route> */}
+      <Route exact path="/about">
+        <About to="/about" />
+      </Route>
       <Route exact path="/search-site">
         <Search currentUser={currentUser} users={users} setUsers={setUsers} projCollabArray={projCollabArray} setProjCollabArray={setProjCollabArray} API={API} projectsArray={projectsArray}/>
       </Route>
