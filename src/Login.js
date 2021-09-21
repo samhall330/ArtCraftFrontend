@@ -12,6 +12,10 @@ function Login({currentUser, setCurrentUser, API}){
         setLoginForm(thisForm)
     }
 
+    function pushSignUp(){
+        history.push("/signup")
+    }
+
     function handleSubmit(e){   
         e.preventDefault()
         fetch(`${API}/login`, {
@@ -49,7 +53,7 @@ function Login({currentUser, setCurrentUser, API}){
                             <br></br>
                             <h3 className="display-4">Haven't Signed Up Yet?</h3>
                             <br></br>
-                            <button type="submit" to="/signup" className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign Up</button>
+                            <button type="submit" onClick={pushSignUp} className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign Up</button>
                         </div>
                     </div>
                 </div>
